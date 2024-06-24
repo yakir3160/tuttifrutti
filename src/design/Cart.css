@@ -1,0 +1,30 @@
+
+.cart {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation: fadeInBottom 1s ease-in-out forwards;
+}
+
+.cart h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-family: Jost;
+
+}
+
+.cart-total {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: right;
+    font-family: Jost;
+
+}
