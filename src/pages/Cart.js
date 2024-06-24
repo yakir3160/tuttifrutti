@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CartItem from '../components/CartItem';
 import "../App.css";
 import "../design/Cart.css";
-import {Link} from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
     const [cartItems, setCartItems] = useState([]);
@@ -36,8 +36,8 @@ const Cart = () => {
 
     return (
         <div className="cart">
-            <h2>Shopping Cart</h2>
-            <Link to={"/shop"} style={{textDecoration: "none"}}>
+            <b className="title">Shopping Cart</b>
+            <Link to="/shop" style={{ textDecoration: 'none' }}>
                 <button className="button">
                     <div className="start-shopping">Continue Shopping</div>
                 </button>

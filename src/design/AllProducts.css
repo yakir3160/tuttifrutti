@@ -12,6 +12,7 @@
     margin-bottom: 20px;
 }
 
+
 .hero-cta1 {
     display: flex;
     flex-direction: column;
@@ -22,7 +23,6 @@
 
 .label {
     flex: 1;
-    line-height: 24px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;

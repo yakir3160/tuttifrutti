@@ -37,16 +37,16 @@ const ProductCard = ({ className = "", onAddToCart }) => {
             </div>
             <div className="card-body">
                 <h5 className="card-title">{title}</h5>
-                <span style={{fontSize: "16px", fontWeight: "bold", marginBottom: "-30px"}}>
-                    KG: ₪{pricePerKg.toFixed(2)}
+                <span style={{fontSize: "16px", fontWeight: "bold",padding:"10px"}}>
+                    kg: ₪{pricePerKg.toFixed(2)}
                 </span>
-                <br/>
+
                 <div className="quantity-control">
                     <button onClick={handleDecrease} className="btn btn-secondary">-</button>
                     <span className="quantity-label">{quantity.toFixed(1)} kg</span>
                     <button onClick={handleIncrease} className="btn btn-secondary">+</button>
                 </div>
-                <div className="price-info" style={{display: 'flex', flexDirection: 'column'}}>
+                <div className="price-info">
                     <span>Total price: </span>
                     <span style={{fontSize: "16px", fontWeight: "bold"}}> ₪{totalPrice}</span>
                 </div>

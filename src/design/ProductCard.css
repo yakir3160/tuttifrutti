@@ -1,16 +1,11 @@
-body {
-    font-family: 'Jost', sans-serif;
-    font-size: 16px;
-    margin: 0; /* Remove default margin */
-
-}
 
 .card {
-    border-radius: 15px; /* Adjust the border radius for a rectangular shape */
+    border-radius: 15px;
     overflow: hidden;
     transition: transform 0.2s;
-    width: fit-content; /* Set the card width to 100% to make it responsive */
-    max-width: 400px; /* Set a maximum width for the card to avoid stretching on larger screens */
+    width: fit-content;
+    height: fit-content;
+    max-width: 400px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
 
 }
@@ -32,10 +27,11 @@ body {
 }
 
 .card-body {
-    padding: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    height: fit-content;
 }
 
 .quantity-control {
@@ -60,7 +56,9 @@ body {
 }
 
 .card-text, .card-title,.price-info {
-    font-size: 14px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
 }
 
 /* Adjustments for smaller screens */

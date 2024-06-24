@@ -5,7 +5,7 @@ import Layout from './Layout';
 import LandingPage from './pages/LandingPage';
 import Shop from './pages/Shop';
 import Cart from './pages/Cart';
-// import db from './config/mongoose';
+
 
 const App = () => {
     return (

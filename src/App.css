@@ -71,5 +71,12 @@ html, body {
   background-color: #9e3333;
   scale: 0.99;
 }
+.title {
+  font-size: 50px;
+  font-family: 'Jost', sans-serif;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
 
 

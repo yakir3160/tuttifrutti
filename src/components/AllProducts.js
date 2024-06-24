@@ -5,8 +5,11 @@ const AllProducts = ({ className = "" }) => {
     return (
 
         <div className={`all-products ${className}`}>
+
             <div className="btn-group">
-                <button className="btn btn-secondary dropdown-toggle button"  style={{borderRadius:"20px" ,background: "#6b0000",  alignItems:"center"}} type="button" data-bs-toggle="dropdown"
+                <button className="btn btn-secondary dropdown-toggle button"
+                        style={{borderRadius: "20px", background: "#6b0000", alignItems: "center"}} type="button"
+                        data-bs-toggle="dropdown"
                         aria-expanded="false">
                     Sort By
                 </button>
@@ -18,9 +21,8 @@ const AllProducts = ({ className = "" }) => {
             </div>
             <div className="hero-cta1">
                 <b className="all-products1">All products</b>
-
             </div>
-            <ProductCard/>
+                <ProductCard/>
         </div>
     );
 };

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import BestSellers from "../components/BestSellers";
 import NewProducts from "../components/NewProducts";
 import AllProducts from "../components/AllProducts";
-import Cart from "./Cart";
 import ProductCard from "../components/ProductCard";
 import "../design/Shop.css";
 
@@ -15,11 +14,10 @@ const Shop = () => {
 
     return (
         <div className="shop">
-            <b className="shop1">Shop</b>
+            <b className="title">Shop</b>
             <BestSellers />
             <NewProducts />
             <AllProducts />
-            <ProductCard onAddToCart={addToCart} />
         </div>
     );
 };

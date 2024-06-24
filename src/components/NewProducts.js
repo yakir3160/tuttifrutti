@@ -5,8 +5,7 @@ const NewProducts = ({ className = "" }) => {
     return (
         <div className={`new-products ${className}`}>
             <div className="new-on-the">New on the shelf</div>
-            <ProductCard/>
-
+                <ProductCard/>
         </div>
     );
 };
