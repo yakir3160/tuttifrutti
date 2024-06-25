@@ -7,7 +7,7 @@ const ProductCard = ({ className = "", onAddToCart }) => {
     const [quantity, setQuantity] = useState(0.5);
     const pricePerKg = 5;
     const title = "Card title";
-    const image = "https://via.placeholder.com/150";
+    const image = "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202312/6-fruits-to-eat-on-empty-stomach-053937965-1x1.jpg?VersionId=xIXuT3WPQa4V8dHjQllmefHlDH1mfNDw"      ;
 
     const handleIncrease = () => {
         if (quantity < 20) setQuantity(quantity + 0.5);
@@ -33,7 +33,7 @@ const ProductCard = ({ className = "", onAddToCart }) => {
     return (
         <div className={`card ${className}`}>
             <div className="img-container">
-                <img src={image} className="card-img-top" alt="Product" />
+                <img src= {image} className="card-img" alt="Product" />
             </div>
             <div className="card-body">
                 <h5 className="card-title">{title}</h5>

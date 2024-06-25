@@ -6,9 +6,7 @@ const BestSellers = ({ className = "" }) => {
 
         <div className={`best-sellers ${className}`}>
             <div className="best-sellers1">Best Sellers</div>
-
                 <ProductCard/>
-
         </div>
     );
 };
