@@ -1,19 +1,12 @@
 
 
 .best-sellers1 {
-    font-weight: 600;
-    font-size: 40px;
+    font-weight: 800;
+    font-size: 30px;
     line-height: 110%;
-    margin-bottom: 20px;
-}
+    margin: 30px;
+    color: #6b0000;
 
-.best-sellers {
-    max-width: 100%;
-    text-align: left;
-    font-size: 40px;
-    padding: 20px;
-    color: #000;
-    font-family: Jost;
 }
 
 @media screen and (max-width: 750px) {

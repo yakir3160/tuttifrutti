@@ -42,7 +42,7 @@ const Cart = () => {
                     <div className="start-shopping">Continue Shopping</div>
                 </button>
             </Link>
-            {cartItems.length === 0 ? (
+            {cartItems.length !== 0 ? (
                 <p>Your cart is empty.</p>
             ) : (
                 <div>

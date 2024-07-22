@@ -30,7 +30,9 @@ html, body {
   white-space: nowrap;
 
 }
-
+.Logo-font:hover{
+  background-color: #bc1d1d;
+}
 .app-container {
   width: 100%;
   height: 100%;
@@ -42,7 +44,7 @@ html, body {
 }
 
 .navigation {
-  animation: fadeInTop 1s ease-out;
+  animation: fadeInTop 0.9s ease-out;
 }
 
 @keyframes fadeInTop {
@@ -66,7 +68,7 @@ html, body {
   align-items: flex-start;
   justify-content: flex-start;
   white-space: nowrap;
-  transition: background-color 0.3s, transform 0.3s;  ;
+  transition: background-color 0.3s, transform 0.1s;  ;
 }
 .button:hover {
   background-color: #9e3333;

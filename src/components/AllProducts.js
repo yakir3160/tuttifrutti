@@ -4,7 +4,10 @@ import "../design/AllProducts.css";
 const AllProducts = ({ className = "" }) => {
     return (
 
-        <div className={`all-products ${className}`}>
+        <>
+            <div className="hero-cta1">
+                <b className="all-products1">All products</b>
+            </div>
 
             <div className="btn-group">
                 <button className="btn btn-secondary dropdown-toggle button"
@@ -19,11 +22,19 @@ const AllProducts = ({ className = "" }) => {
                     <li><a className="dropdown-item" href="#">A-Z</a></li>
                 </ul>
             </div>
-            <div className="hero-cta1">
-                <b className="all-products1">All products</b>
-            </div>
+            <div className={`shop-section-all ${className}`}>
                 <ProductCard/>
-        </div>
+                <ProductCard/>
+                <ProductCard/>
+                <ProductCard/>
+                <ProductCard/>
+                <ProductCard/>
+                <ProductCard/>
+                <ProductCard/>
+                <ProductCard/>
+            </div>
+
+        </>
     );
 };
 

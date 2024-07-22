@@ -1,15 +1,9 @@
-.all-products {
-    max-width: 1261px;
-    padding: 20px;
-    text-align: center;
-    font-size: 64px;
-    color: #000;
-    font-family: Jost;
-}
 
 .all-products1 {
     letter-spacing: -0.02em;
-    margin-bottom: 20px;
+    color: #6b0000;
+    padding: 30px;
+
 }
 
 
