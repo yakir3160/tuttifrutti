@@ -33,10 +33,11 @@
 
 .tutti-frutti {
     letter-spacing: -0.02em;
-    font-size: 40px;
+    font-size: 50px;
 }
 
 .best-fruits-online {
+    margin-top: -20px;
     font-size: 28px;
 }
 

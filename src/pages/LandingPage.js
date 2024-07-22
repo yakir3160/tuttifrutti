@@ -10,7 +10,8 @@ const LandingPage = () => {
             <div className="image"></div>
             <div className="landing-text">
                 <b className="tutti-frutti">Tutti Frutti</b>
-                <div className="best-fruits-online">Best fruits online</div>
+                <span style={{fontSize:"16px" ,color:"white"}}>*probably</span>
+                <div className="best-fruits-online">The best fruits online</div>
                 <Link to={"shop"} style={{textDecoration: "none"}}>
                     <button className="button">
                         <div className="start-shopping">Start Shopping</div>

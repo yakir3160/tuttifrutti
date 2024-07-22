@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { toast, ToastContainer } from 'react-toastify';
-import Autocomplete from 'react-google-autocomplete';
 import 'react-toastify/dist/ReactToastify.css';
+import Autocomplete from 'react-google-autocomplete';
 import "../App.css";
 import "../design/Cart.css";
 
@@ -74,7 +74,7 @@ const Cart = () => {
         <div className="cart">
             <div className="items-in-cart">
                 <b className="title">Shopping Cart</b>
-                <Link to="/shop" style={{textDecoration: 'none'}}>
+                <Link to="/shop" style={{ textDecoration: 'none' }}>
                     <button className="button">
                         <div className="start-shopping">Continue Shopping</div>
                     </button>
@@ -122,7 +122,7 @@ const Cart = () => {
                                 className={`input ${touched.fullName && errors.fullName ? 'input-error' : ''}`}
                             />
                             <div className="error-container">
-                                <ErrorMessage name="fullName" component="div" className="error-message"/>
+                                <ErrorMessage name="fullName" component="div" className="error-message" />
                             </div>
                         </div>
                         <div className="form-group">
@@ -134,7 +134,7 @@ const Cart = () => {
                                 className={`input ${touched.address && errors.address ? 'input-error' : ''}`}
                             />
                             <div className="error-container">
-                                <ErrorMessage name="address" component="div" className="error-message"/>
+                                <ErrorMessage name="address" component="div" className="error-message" />
                             </div>
                         </div>
                         <div className="form-group">
@@ -146,7 +146,7 @@ const Cart = () => {
                                 className={`input ${touched.city && errors.city ? 'input-error' : ''}`}
                             />
                             <div className="error-container">
-                                <ErrorMessage name="city" component="div" className="error-message"/>
+                                <ErrorMessage name="city" component="div" className="error-message" />
                             </div>
                         </div>
                         <div className="form-group">
@@ -158,7 +158,7 @@ const Cart = () => {
                                 className={`input ${touched.zip && errors.zip ? 'input-error' : ''}`}
                             />
                             <div className="error-container">
-                                <ErrorMessage name="zip" component="div" className="error-message"/>
+                                <ErrorMessage name="zip" component="div" className="error-message" />
                             </div>
                         </div>
                         <h2>What's your contact information?</h2>
@@ -171,7 +171,7 @@ const Cart = () => {
                                 className={`input ${touched.email && errors.email ? 'input-error' : ''}`}
                             />
                             <div className="error-container">
-                                <ErrorMessage name="email" component="div" className="error-message"/>
+                                <ErrorMessage name="email" component="div" className="error-message" />
                             </div>
                         </div>
                         <div className="form-group">
@@ -183,7 +183,7 @@ const Cart = () => {
                                 className={`input ${touched.phone && errors.phone ? 'input-error' : ''}`}
                             />
                             <div className="error-container">
-                                <ErrorMessage name="phone" component="div" className="error-message"/>
+                                <ErrorMessage name="phone" component="div" className="error-message" />
                             </div>
                         </div>
                         <button
@@ -200,7 +200,7 @@ const Cart = () => {
             <ToastContainer
                 position="bottom-right"
                 autoClose={10000}
-                style={{width: "400px"}}
+                style={{ width: "400px" }}
             />
         </div>
     );
