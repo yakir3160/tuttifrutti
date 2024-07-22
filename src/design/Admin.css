@@ -1,11 +1,30 @@
 .admin {
     padding: 20px;
+    font-family: Jost, serif;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: fadeInBottom 0.7s ease-in-out forwards;
 }
 
 .add-product, .orders {
     margin-bottom: 30px;
-}
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    width: fit-content;
+    background: #fff8f8;
+    border-radius: 15px;
+    animation: fadeInBottom 0.4s ease-in-out forwards;
 
+}
+.orders{
+    width: 100%;
+}
 h1, h2 {
     color: #333;
 }
@@ -23,20 +42,7 @@ input[type="text"], input[type="number"] {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-button {
-    padding: 10px 20px;
-    border: none;
-    background-color: #28a745;
-    color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #218838;
+    border-radius: 15px;
 }
 
 .error {

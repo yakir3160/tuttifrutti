@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import "../design/Admin.css"
 
 const Admin = () => {
     const [productName, setProductName] = useState('');
@@ -57,12 +58,12 @@ const Admin = () => {
     };
 
     return (
-        <div className="title">
-            <h1>Admin Panel</h1>
+        <div className="admin">
+            <h1 className= "title">Admin Panel</h1>
 
             <section className="add-product">
                 <h2>Add Product</h2>
-                <form onSubmit={handleAddProduct}>
+                <form style={{display:"flex",justifyContent:"center",alignItems:"center" ,flexDirection:"column"}} onSubmit={handleAddProduct}>
                     <div className="form-group">
                         <label htmlFor="productName">Product Name:</label>
                         <input
@@ -83,7 +84,7 @@ const Admin = () => {
                             required
                         />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group" >
                         <label htmlFor="productImage">Product Image:</label>
                         <input
                             type="file"
@@ -93,14 +94,16 @@ const Admin = () => {
                             required
                         />
                     </div>
-                    <button type="submit">Add Product</button>
+                    <button className= "btn btn-primary d-flex align-items-center justify-content-center button" type="submit">Add Product</button>
+                    {error && <p className="error">{error}</p>}
                 </form>
-                {error && <p className="error">{error}</p>}
+
             </section>
 
             <section className="orders">
                 <h2>All Orders</h2>
-                {orders.length === 0 ? (
+                {error && <p className="error">{error}</p>}
+                {orders.length !== 0 ? (
                     <p>No orders found.</p>
                 ) : (
                     <ul>
