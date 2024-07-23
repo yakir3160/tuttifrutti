@@ -16,15 +16,27 @@ const Admin = () => {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/orders');
+                console.log('Fetching orders...');
+                const response = await axios.get('http://localhost:3002/api/orders');
+                console.log('Orders fetched:', response.data);
                 setOrders(response.data);
+                response.data.forEach((order, index) => {
+                    console.log(`Order ${index + 1}:`);
+                    console.log('ID:', order._id);
+                    console.log('Customer:', order.customerInfo?.fullName);
+                    console.log('Total Price:', order.totalPrice);
+                    console.log('Items:', order.products);
+                    console.log('---');
+                });
             } catch (error) {
-                setError('Failed to fetch orders.');
+                console.error('Error fetching orders:', error);
+                setError('Failed to fetch orders: ' + error.message);
             }
         };
 
         fetchOrders();
     }, []);
+    console.log('Current orders state:', orders);
 
     // Handle adding a product
     const handleAddProduct = async (event) => {
@@ -41,7 +53,7 @@ const Admin = () => {
         formData.append('image', productImage);
 
         try {
-            await axios.post('http://localhost:5000/api/products', formData, {
+            await axios.post('http://localhost:3002/api/products', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -59,11 +71,12 @@ const Admin = () => {
 
     return (
         <div className="admin">
-            <h1 className= "title">Admin Panel</h1>
+            <h1 className="title">Admin Panel</h1>
 
             <section className="add-product">
                 <h2>Add Product</h2>
-                <form style={{display:"flex",justifyContent:"center",alignItems:"center" ,flexDirection:"column"}} onSubmit={handleAddProduct}>
+                <form style={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}
+                      onSubmit={handleAddProduct}>
                     <div className="form-group">
                         <label htmlFor="productName">Product Name:</label>
                         <input
@@ -84,7 +97,7 @@ const Admin = () => {
                             required
                         />
                     </div>
-                    <div className="form-group" >
+                    <div className="form-group">
                         <label htmlFor="productImage">Product Image:</label>
                         <input
                             type="file"
@@ -94,7 +107,9 @@ const Admin = () => {
                             required
                         />
                     </div>
-                    <button className= "btn btn-primary d-flex align-items-center justify-content-center button" type="submit">Add Product</button>
+                    <button className="btn btn-primary d-flex align-items-center justify-content-center button"
+                            type="submit">Add Product
+                    </button>
                     {error && <p className="error">{error}</p>}
                 </form>
 
@@ -103,29 +118,35 @@ const Admin = () => {
             <section className="orders">
                 <h2>All Orders</h2>
                 {error && <p className="error">{error}</p>}
-                {orders.length !== 0 ? (
+                {orders.length === 0 ? (
                     <p>No orders found.</p>
                 ) : (
                     <ul>
                         {orders.map(order => (
                             <li key={order._id}>
                                 <p>Order ID: {order._id}</p>
-                                <p>Customer Name: {order.customerName}</p>
-                                <p>Total Price: ₪{order.totalPrice.toFixed(2)}</p>
-                                <p>Items:</p>
-                                <ul>
-                                    {order.items.map((item, index) => (
-                                        <li key={index}>
-                                            {item.name} - Quantity: {item.quantity}
-                                        </li>
-                                    ))}
-                                </ul>
+                                <p>Customer Name: {order.customerInfo?.fullName || 'N/A'}</p>
+                                <p>Total Price: ₪{(order.totalPrice || 0).toFixed(2)}</p>
+                                <p>Products:</p>
+                                {Array.isArray(order.products) && order.products.length > 0 ? (
+                                    <ul>
+                                        {order.products.map((product, index) => (
+                                            <li key={index}>
+                                                {product.name || 'Unknown Product'} -
+                                                Quantity: {product.quantity || 'N/A'},
+                                                Price per Kg: ₪{(product.pricePerKg || 0).toFixed(2)}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                ) : (
+                                    <p>No products found for this order.</p>
+                                )}
                             </li>
                         ))}
                     </ul>
                 )}
             </section>
-            <ToastContainer />
+            <ToastContainer/>
         </div>
     );
 };

@@ -3,7 +3,7 @@ import "../design/NewProducts.css";
 import React from "react";
 import {Carousel} from "react-responsive-carousel";
 
-const NewProducts = ({ className = "" }) => {
+const NewProducts = ({ className = "", addToCart  }) => {
     return (
         <>
             <div className="new-on-the">New on the shelf</div>
@@ -17,16 +17,16 @@ const NewProducts = ({ className = "" }) => {
                     stopOnHover={true}
                 >
                     <div className="carousel-slide">
-                        <ProductCard />
-                        <ProductCard />
-                        <ProductCard />
-                        <ProductCard />
+                        <ProductCard addToCart={addToCart }/>
+                        <ProductCard addToCart={addToCart }/>
+                        <ProductCard addToCart={addToCart }/>
+                        <ProductCard addToCart={addToCart }/>
                     </div>
                     <div className="carousel-slide">
-                        <ProductCard />
-                        <ProductCard />
-                        <ProductCard />
-                        <ProductCard />
+                        <ProductCard addToCart={addToCart }/>
+                        <ProductCard addToCart={addToCart }/>
+                        <ProductCard addToCart={addToCart }/>
+                        <ProductCard addToCart={addToCart }/>
                     </div>
                 </Carousel>
         </>

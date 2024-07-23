@@ -1,7 +1,7 @@
 import ProductCard from "./ProductCard";
 import "../design/AllProducts.css";
 
-const AllProducts = ({ className = "" }) => {
+const AllProducts = ({ className = "" , addToCart }) => {
     return (
 
         <>
@@ -23,15 +23,15 @@ const AllProducts = ({ className = "" }) => {
                 </ul>
             </div>
             <div className={`shop-section-all ${className}`}>
-                <ProductCard/>
-                <ProductCard/>
-                <ProductCard/>
-                <ProductCard/>
-                <ProductCard/>
-                <ProductCard/>
-                <ProductCard/>
-                <ProductCard/>
-                <ProductCard/>
+                <ProductCard addToCart={addToCart}/>
+                <ProductCard addToCart={addToCart}/>
+                <ProductCard addToCart={addToCart}/>
+                <ProductCard addToCart={addToCart}/>
+                <ProductCard addToCart={addToCart}/>
+                <ProductCard addToCart={addToCart}/>
+                <ProductCard addToCart={addToCart}/>
+                <ProductCard addToCart={addToCart}/>
+                <ProductCard addToCart={addToCart}/>
             </div>
 
         </>

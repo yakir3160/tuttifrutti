@@ -3,7 +3,7 @@ import { BsCartPlus } from 'react-icons/bs';
 import "../App.css";
 import "../design/ProductCard.css";
 
-const ProductCard = ({ className = "", onAddToCart }) => {
+const ProductCard = ({ className = "",addToCart, product }) => {
     const [quantity, setQuantity] = useState(0.5);
     const pricePerKg = 5;
     const title = "Card title";
@@ -25,7 +25,7 @@ const ProductCard = ({ className = "", onAddToCart }) => {
             image,
             quantity: parseFloat(quantity.toFixed(1))
         };
-        onAddToCart(product); // Invoke callback to add product to cart in Shop component
+        addToCart(product); // Invoke callback to add product to cart in Shop component
     };
 
     const totalPrice = (quantity * pricePerKg).toFixed(2);

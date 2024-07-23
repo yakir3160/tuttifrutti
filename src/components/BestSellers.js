@@ -4,7 +4,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import ProductCard from "./ProductCard";
 import "../design/BestSellers.css";
 
-const BestSellers = ({ className = "" }) => {
+const BestSellers = ({ className = "", addToCart  }) => {
     return (
         <>
             <div className="best-sellers1">Best Sellers</div>
@@ -18,16 +18,16 @@ const BestSellers = ({ className = "" }) => {
                 stopOnHover={true}
             >
                 <div className="carousel-slide">
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
+                    <ProductCard addToCart={addToCart }/>
+                    <ProductCard addToCart={addToCart }/>
+                    <ProductCard addToCart={addToCart }/>
+                    <ProductCard addToCart={addToCart }/>
                 </div>
                 <div className="carousel-slide">
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
+                    <ProductCard addToCart={addToCart }/>
+                    <ProductCard addToCart={addToCart }/>
+                    <ProductCard addToCart={addToCart }/>
+                    <ProductCard addToCart={addToCart }/>
                 </div>
             </Carousel>
         </>

@@ -5,12 +5,14 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Autocomplete from 'react-google-autocomplete';
 import "../App.css";
 import "../design/Cart.css";
+import { useOutletContext } from 'react-router-dom';
+import axios from "axios";
+
 
 const Cart = () => {
-    const [cartItems, setCartItems] = useState([]);
+    const { cartItems, setCartItems } = useOutletContext();
 
     const handleIncrease = (id) => {
         setCartItems((prevItems) =>
@@ -52,23 +54,87 @@ const Cart = () => {
             .required('Phone number is required')
     });
 
-    const handleSubmit = (values, { resetForm }) => {
-        // Create a string with shoe information
-        const shoeInfo = cartItems.map(item =>
-            `${item.name}: ${item.quantity} kg - ₪${(item.quantity * item.pricePerKg).toFixed(2)}`
-        ).join('\n');
+    const handleSubmit = async (values, {resetForm, setSubmitting}) => {
+        // // Create a string with shoe information
+        // const shoeInfo = cartItems.map(item =>
+        //     `${item.name}: ${item.quantity} kg - ₪${(item.quantity * item.pricePerKg).toFixed(2)}`
+        // ).join('\n');
+        //
+        // // Show toast with user info and shoe details
+        // toast.success(
+        //     `Order submitted!\n
+        // Full Name: ${values.fullName}
+        // Email: ${values.email}\n
+        // Total: ₪${totalPrice}`,
+        //     { autoClose: 10000 } // Increase autoClose time to 10 seconds
+        // );
+        //
+        // // Reset the form
+        // resetForm();
+        try {
+            console.log('Cart Items:', cartItems);
+            console.log('Total Price:', totalPrice);
+            // Prepare the order data
+            const orderData = {
+                customerInfo: {
+                    fullName: values.fullName,
+                    address: values.address,
+                    city: values.city,
+                    zip: values.zip,
+                    email: values.email,
+                    phone: values.phone
+                },
+                products: cartItems.map(item => ({
+                    productId: item.id.toString(),
+                    name: item.title,
+                    quantity: item.quantity,
+                    pricePerKg: item.pricePerKg
+                })),
+                totalPrice: parseFloat(totalPrice)
+            };
+            console.log('Order data being sent:', JSON.stringify(orderData, null, 2));
 
-        // Show toast with user info and shoe details
-        toast.success(
-            `Order submitted!\n
-        Full Name: ${values.fullName}
-        Email: ${values.email}\n
-        Total: ₪${totalPrice}`,
-            { autoClose: 10000 } // Increase autoClose time to 10 seconds
-        );
 
-        // Reset the form
-        resetForm();
+            // Send the order data to the server
+            const response = await axios.post('http://localhost:3002/api/orders', orderData);
+
+            // If the order was successful, show a success message and clear the cart
+            if (response.data.success) {
+                toast.success(
+                    `Order submitted successfully!\n
+                Order ID: ${response.data.orderId}\n
+                Full Name: ${values.fullName}
+                Email: ${values.email}\n
+                Total: ₪${totalPrice}`,
+                    {autoClose: 10000}
+                );
+
+                // Clear the cart
+                setCartItems([]);
+
+                // Reset the form
+                resetForm();
+            } else {
+                toast.error('Failed to submit order. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error submitting order:', error);
+            if (error.response) {
+                console.error('Response data:', error.response.data);
+                console.error('Response status:', error.response.status);
+                console.error('Response headers:', error.response.headers);
+                toast.error(`Server error: ${error.response.data.message || 'Unknown error'}`);
+            } else if (error.request) {
+                console.error('No response received:', error.request);
+                toast.error('No response from server. Please try again later.');
+            } else {
+                console.error('Error message:', error.message);
+                toast.error('An error occurred while submitting the order. Please try again.');
+            }
+            toast.error('An error occurred while submitting the order. Please try again.');
+        } finally {
+            setSubmitting(false);
+        }
     };
     return (
         <div className="cart">
@@ -110,7 +176,7 @@ const Cart = () => {
                 validationSchema={validationSchema}
                 onSubmit={handleSubmit}
             >
-                {({ errors, touched }) => (
+                {({ errors, touched , isSubmitting }) => (
                     <Form className="client-info-form">
                         <h2>Enter your name and address:</h2>
                         <div className="form-group">
@@ -190,8 +256,9 @@ const Cart = () => {
                             type="submit"
                             className="btn btn-primary d-flex align-items-center justify-content-center button"
                             style={{ margin: "50px" }}
+                            disabled={isSubmitting}
                         >
-                            Submit Order
+                            {isSubmitting ? 'Submitting...' : 'Submit Order'}
                         </button>
                     </Form>
                 )}
