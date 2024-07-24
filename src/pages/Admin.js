@@ -19,15 +19,7 @@ const Admin = () => {
                 console.log('Fetching orders...');
                 const response = await axios.get('http://localhost:3002/api/orders');
                 console.log('Orders fetched:', response.data);
-                setOrders(response.data);
-                response.data.forEach((order, index) => {
-                    console.log(`Order ${index + 1}:`);
-                    console.log('ID:', order._id);
-                    console.log('Customer:', order.customerInfo?.fullName);
-                    console.log('Total Price:', order.totalPrice);
-                    console.log('Items:', order.products);
-                    console.log('---');
-                });
+                setOrders(response.data)
             } catch (error) {
                 console.error('Error fetching orders:', error);
                 setError('Failed to fetch orders: ' + error.message);
@@ -36,7 +28,6 @@ const Admin = () => {
 
         fetchOrders();
     }, []);
-    console.log('Current orders state:', orders);
 
     // Handle adding a product
     const handleAddProduct = async (event) => {
@@ -53,18 +44,20 @@ const Admin = () => {
         formData.append('image', productImage);
 
         try {
-            await axios.post('http://localhost:3002/api/products', formData, {
+            const response = await axios.post('http://localhost:3002/api/products', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
+            console.log('Server response:', response.data);
             setProductName('');
             setProductPrice('');
             setProductImage(null);
             setError('');
             toast.success('Product added successfully');
         } catch (error) {
-            setError('Failed to add product.');
+            console.error('Error adding product:', error.response ? error.response.data : error.message);
+            setError('Failed to add product: ' + (error.response ? error.response.data.error : error.message));
             toast.error('Failed to add product.');
         }
     };

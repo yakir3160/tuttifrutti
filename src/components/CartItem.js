@@ -2,12 +2,13 @@ import React from 'react';
 import "../design/CartItem.css";
 
 const CartItem = ({ item, onIncrease, onDecrease, onRemove }) => {
-    const { id, title, quantity, pricePerKg } = item;
+    const { id, name, quantity, pricePerKg } = item;
     const itemTotalPrice = (quantity * pricePerKg).toFixed(2);
 
     return (
         <div className="cart-item">
-            <h5>{title}</h5>
+            <h5>{name}</h5>
+            <img src={`http://localhost:3002/uploads/${item.image}`}/>
             <div className="cart-item-details">
                 <span>Price per KG: ₪{pricePerKg.toFixed(2)}</span>
                 <span>Quantity: {quantity.toFixed(1)} kg</span>

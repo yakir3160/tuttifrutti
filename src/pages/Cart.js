@@ -55,22 +55,6 @@ const Cart = () => {
     });
 
     const handleSubmit = async (values, {resetForm, setSubmitting}) => {
-        // // Create a string with shoe information
-        // const shoeInfo = cartItems.map(item =>
-        //     `${item.name}: ${item.quantity} kg - ₪${(item.quantity * item.pricePerKg).toFixed(2)}`
-        // ).join('\n');
-        //
-        // // Show toast with user info and shoe details
-        // toast.success(
-        //     `Order submitted!\n
-        // Full Name: ${values.fullName}
-        // Email: ${values.email}\n
-        // Total: ₪${totalPrice}`,
-        //     { autoClose: 10000 } // Increase autoClose time to 10 seconds
-        // );
-        //
-        // // Reset the form
-        // resetForm();
         try {
             console.log('Cart Items:', cartItems);
             console.log('Total Price:', totalPrice);
@@ -85,8 +69,8 @@ const Cart = () => {
                     phone: values.phone
                 },
                 products: cartItems.map(item => ({
-                    productId: item.id.toString(),
-                    name: item.title,
+                    productId: item._id ? item._id.toString() : '',
+                    name: item.name,
                     quantity: item.quantity,
                     pricePerKg: item.pricePerKg
                 })),
@@ -151,7 +135,7 @@ const Cart = () => {
                     <div>
                         {cartItems.map((item) => (
                             <CartItem
-                                key={item.id}
+                                key={item._id}
                                 item={item}
                                 onIncrease={handleIncrease}
                                 onDecrease={handleDecrease}

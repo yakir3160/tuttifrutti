@@ -10,10 +10,10 @@ const Layout = () => {
 
     const addToCart = useCallback((product) => {
         setCartItems(prevItems => {
-            const existingItem = prevItems.find(item => item.id === product.id);
+            const existingItem = prevItems.find(item => item._id === product._id);
             if (existingItem) {
                 return prevItems.map(item =>
-                    item.id === product.id
+                    item._id === product._id
                         ? { ...item, quantity: item.quantity + product.quantity }
                         : item
                 );

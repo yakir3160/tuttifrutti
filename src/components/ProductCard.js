@@ -3,11 +3,12 @@ import { BsCartPlus } from 'react-icons/bs';
 import "../App.css";
 import "../design/ProductCard.css";
 
-const ProductCard = ({ className = "",addToCart, product }) => {
+const ProductCard = ({ className = "",addToCart, product = {} }) => {
     const [quantity, setQuantity] = useState(0.5);
-    const pricePerKg = 5;
-    const title = "Card title";
-    const image = "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202312/6-fruits-to-eat-on-empty-stomach-053937965-1x1.jpg?VersionId=xIXuT3WPQa4V8dHjQllmefHlDH1mfNDw"      ;
+    const { _id, name = "Product Name", pricePerKg = 0, image = "" } = product;
+    //const pricePerKg = 5;
+    //const title = "Card title";
+    //const image = "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202312/6-fruits-to-eat-on-empty-stomach-053937965-1x1.jpg?VersionId=xIXuT3WPQa4V8dHjQllmefHlDH1mfNDw"      ;
 
     const handleIncrease = () => {
         if (quantity < 20) setQuantity(quantity + 0.5);
@@ -18,14 +19,15 @@ const ProductCard = ({ className = "",addToCart, product }) => {
     };
 
     const handleAddToCart = () => {
-        const product = {
-            id: 1,
-            title,
-            pricePerKg,
-            image,
+        const productToAdd = {
+            _id: product._id,
+            name: product.name,
+            pricePerKg: product.pricePerKg,
+            image: product.image,
             quantity: parseFloat(quantity.toFixed(1))
         };
-        addToCart(product); // Invoke callback to add product to cart in Shop component
+        console.log('Adding to cart:', productToAdd);
+        addToCart(productToAdd); // Invoke callback to add product to cart in Shop component
     };
 
     const totalPrice = (quantity * pricePerKg).toFixed(2);
@@ -33,10 +35,10 @@ const ProductCard = ({ className = "",addToCart, product }) => {
     return (
         <div className={`card ${className}`}>
             <div className="img-container">
-                <img src= {image} className="card-img" alt="Product" />
+                <img src= {`http://localhost:3002/uploads/${image}`} className="card-img" alt={name} />
             </div>
             <div className="card-body">
-                <h5 className="card-title">{title}</h5>
+                <h5 className="card-title">{name}</h5>
                 <span style={{fontSize: "16px", fontWeight: "bold",padding:"10px"}}>
                     kg: ₪{pricePerKg.toFixed(2)}
                 </span>
