@@ -32,11 +32,11 @@ const BestSellers = ({ className = "", addToCart  }) => {
         productSlides.push(bestSellerProducts.slice(i, i+4));
     }
 
-    if (isLoading) return <div>Loading best sellers...</div>;
-    if (error) return <div>{error}</div>;
     return (
+
         <>
             <div className="best-sellers1">Best Sellers</div>
+            {isLoading ? (<div>Loading best sellers...</div>) : <div>{error}</div>}
             {bestSellerProducts && bestSellerProducts.length > 0 ? (
                 <Carousel
                     className={`shop-section ${className}`}

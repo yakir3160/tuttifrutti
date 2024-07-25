@@ -45,8 +45,6 @@ const AllProducts = ({ className = "" , addToCart }) => {
         setSortBy(criteria);
     };
 
-    if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>{error}</div>;
     return (
 
         <>
@@ -62,21 +60,26 @@ const AllProducts = ({ className = "" , addToCart }) => {
                     Sort By
                 </button>
                 <ul className="dropdown-menu">
-                    <li><a className="dropdown-item" href="#" onClick={() => sortProducts('priceHighToLow')}>Price high
+                    <li><a className="dropdown-item" onClick={() => sortProducts('priceHighToLow')}>Price high
                         to low</a></li>
-                    <li><a className="dropdown-item" href="#" onClick={() => sortProducts('priceLowToHigh')}>Price low
+                    <li><a className="dropdown-item"  onClick={() => sortProducts('priceLowToHigh')}>Price low
                         to high</a></li>
-                    <li><a className="dropdown-item" href="#" onClick={() => sortProducts('nameAZ')}>A-Z</a></li>
+                    <li><a className="dropdown-item" onClick={() => sortProducts('nameAZ')}>A-Z</a></li>
                 </ul>
             </div>
             <div className={`shop-section-all ${className}`}>
-                {products.map(product => (
-                    <ProductCard
-                        key={product._id}
-                        product={product}
-                        addToCart={addToCart}
-                    />
-                ))}
+                {isLoading ? (<div>Loading...</div>) :
+                    <>
+                        {products.map(product => (
+                            <ProductCard
+                                key={product._id}
+                                product={product}
+                                addToCart={addToCart}
+                            />
+                        ))}
+                    </>
+                }
+
             </div>
         </>
     );
