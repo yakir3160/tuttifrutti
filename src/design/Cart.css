@@ -40,6 +40,8 @@
     font-weight: bold;
     text-align: center;
     font-family: Jost;
+    padding: 20px;
+
 
 }
 .items-in-cart{
@@ -49,6 +51,7 @@
     justify-content: center;
     width: 100%;
     margin: 30px;
+    max-width: fit-content;
 }
 .client-info-form{
     padding: 30px;
