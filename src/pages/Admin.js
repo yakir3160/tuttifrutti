@@ -11,6 +11,7 @@ const Admin = () => {
     const [productImage, setProductImage] = useState(null);
     const [orders, setOrders] = useState([]);
     const [error, setError] = useState('');
+    const [orderStatus, setOrderStatus] = useState({});
 
     // Fetch orders from the backend
     useEffect(() => {
@@ -59,6 +60,16 @@ const Admin = () => {
             console.error('Error adding product:', error.response ? error.response.data : error.message);
             setError('Failed to add product: ' + (error.response ? error.response.data.error : error.message));
             toast.error('Failed to add product.');
+        }
+    };
+    const handleStatusUpdate = async (orderId, newStatus) => {
+        try {
+            await axios.put(`http://localhost:3002/api/orders/${orderId}/status`, { status: newStatus });
+            setOrderStatus(prev => ({ ...prev, [orderId]: newStatus }));
+            toast.success('Order status updated successfully');
+        } catch (error) {
+            console.error('Error updating order status:', error);
+            toast.error('Failed to update order status');
         }
     };
 
@@ -116,27 +127,51 @@ const Admin = () => {
                 ) : (
                     <ul>
                         {orders.map(order => (
-                            <li key={order._id}>
-                                <p>Order ID: {order._id}</p>
-                                <p>Customer Name: {order.customerInfo?.fullName || 'N/A'}</p>
-                                <p>Total Price: ₪{(order.totalPrice || 0).toFixed(2)}</p>
-                                <p>Products:</p>
-                                {Array.isArray(order.products) && order.products.length > 0 ? (
-                                    <ul>
-                                        {order.products.map((product, index) => (
-                                            <li key={index}>
-                                                {product.name || 'Unknown Product'} -
-                                                Quantity: {product.quantity || 'N/A'},
-                                                Price per Kg: ₪{(product.pricePerKg || 0).toFixed(2)}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                ) : (
-                                    <p>No products found for this order.</p>
-                                )}
+                            <li key={order._id}
+                                className={`order-item ${(orderStatus[order._id] || order.status) === 'closed' ? 'closed' : ''}`}
+                                >
+                                <div className="order-info">
+                                    <p>Order ID: {order._id}</p>
+                                    <p>Customer Name: {order.customerInfo?.fullName || 'N/A'}</p>
+                                    <p>Address
+                                        : {order.customerInfo.address}  {order.customerInfo.city} {order.customerInfo.zip}</p>
+                                    <div className="order-status">
+                                        <label htmlFor={`status-${order._id}`}>Status: </label>
+                                        <select
+                                            style={{padding:"10px",background:"#fff6f6"}}
+                                            id={`status-${order._id}`}
+                                            value={orderStatus[order._id] || order.status || 'processing'}
+                                            onChange={(e) => handleStatusUpdate(order._id, e.target.value)}
+                                        >
+                                            <option value="processing">Processing</option>
+                                            <option value="shipped">Shipped</option>
+                                            <option value="closed">Closed</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className="order-products">
+                                    <p style={{fontSize:"20px",fontWeight:"600"}}>Products:</p>
+                                    {Array.isArray(order.products) && order.products.length > 0 ? (
+                                        <ul>
+                                            {order.products.map((product, index) => (
+                                                <li key={index}>
+                                                    {product.name || 'Unknown Product'} -
+                                                    Quantity: {product.quantity || 'N/A'},
+                                                    Price per Kg: ₪{(product.pricePerKg || 0).toFixed(2)}
+                                                </li>
+                                            ))}
+                                        </ul>
+
+                                    ) : (
+                                        <p>No products found for this order.</p>
+                                    )}
+                                    <p style={{fontSize:"30px",fontWeight:"600"}}>Total Price: ₪{(order.totalPrice || 0).toFixed(2)}</p>
+                                </div>
                             </li>
-                        ))}
+
+                            ))}
                     </ul>
+
                 )}
             </section>
             <ToastContainer/>

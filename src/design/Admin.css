@@ -37,8 +37,45 @@ label {
     display: block;
     margin-bottom: 5px;
 }
+.order-item{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+   box-shadow: #acafa2 0.5px 0.5px  0.5px 0.5px ;
+    background: #f4f4f4;
+    padding: 10px;
+    border-radius: 25px;
 
+}
+.order-info{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    margin: 40px;
+    padding: 20px;
+    border-radius: 25px;
+}
+.order-products{
+    padding: 20px;
+}
+.order-status {
+    margin-top: 10px;
+}
 
+.order-status select {
+    padding: 5px;
+    border-radius: 25px;
+    border: 1px solid #bfbfbf;
+}
+.order-item.closed {
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
 .error {
     color: red;
     font-size: 14px;

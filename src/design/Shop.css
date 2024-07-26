@@ -11,7 +11,6 @@
     align-items: center;
     justify-content: center;
     max-width: 100%;
-
     background: #fff8f8;
     border-radius: 15px;
     text-align: center;
@@ -36,7 +35,7 @@
     font-family: Jost, serif;
     height: fit-content;
     min-height: 500px;
-    /*margin: 20px 0 20px 0;*/
+    margin: 20px 0 20px 0;
     padding: 20px;
 }
 
@@ -70,7 +69,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    padding: 50px;
+    padding: 60px;
     overflow: hidden;
 }
 
@@ -83,6 +82,7 @@
     background-color: #b60000;
     color: #b60000;
     border: none;
+
     font-size: 1.5em;
     padding: 0.2em;
     cursor: pointer;

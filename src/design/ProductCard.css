@@ -3,13 +3,12 @@
     border-radius: 15px;
     overflow: hidden;
     transition: transform 0.2s;
-
-width: 150px;
+    width: 150px;
     height: fit-content;
     margin: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
     min-width: fit-content;
-    max-width: 250px;
+    max-width: 200px;
 
 }
 
