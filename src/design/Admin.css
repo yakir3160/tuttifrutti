@@ -1,3 +1,4 @@
+/* General styles */
 .admin {
     padding: 20px;
     font-family: Jost, serif;
@@ -9,22 +10,39 @@
     animation: fadeInBottom 0.7s ease-in-out forwards;
 }
 
-.add-product, .orders {
+.admin-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+}
+
+.admin-container2 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-product, .orders, .products {
     margin-bottom: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 30px;
-    width: fit-content;
+    width: 100%;
     background: #fff8f8;
     border-radius: 15px;
     animation: fadeInBottom 0.4s ease-in-out forwards;
-
 }
-.orders{
+
+.orders {
     width: 100%;
 }
+
 h1, h2 {
     color: #333;
 }
@@ -37,19 +55,20 @@ label {
     display: block;
     margin-bottom: 5px;
 }
-.order-item{
+
+.order-item {
     width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-   box-shadow: #acafa2 0.5px 0.5px  0.5px 0.5px ;
+    box-shadow: #acafa2 0.5px 0.5px 0.5px 0.5px;
     background: #f4f4f4;
     padding: 10px;
     border-radius: 25px;
-
 }
-.order-info{
+
+.order-info {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -60,9 +79,11 @@ label {
     padding: 20px;
     border-radius: 25px;
 }
-.order-products{
+
+.order-products {
     padding: 20px;
 }
+
 .order-status {
     margin-top: 10px;
 }
@@ -72,20 +93,24 @@ label {
     border-radius: 25px;
     border: 1px solid #bfbfbf;
 }
+
 .order-item.closed {
     opacity: 0.5;
     transition: opacity 0.3s ease;
 }
+
 .error {
     color: red;
     font-size: 14px;
 }
 
-.orders ul {
+.orders ul,
+.products ul {
     list-style: none;
     padding: 0;
 }
 
-.orders li {
+.orders li,
+.products li {
     margin-bottom: 15px;
 }

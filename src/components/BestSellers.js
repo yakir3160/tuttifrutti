@@ -5,7 +5,7 @@ import ProductCard from "./ProductCard";
 import "../design/BestSellers.css";
 import axios from "axios";
 
-const BestSellers = ({ className = "", addToCart  }) => {
+const BestSellers = ({ className = "", addToCart }) => {
     const [bestSellerProducts, setBestSellerProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -24,16 +24,14 @@ const BestSellers = ({ className = "", addToCart  }) => {
             }
         }
         fetchBestSellers();
-
     }, [])
 
-   const productSlides = [];
-    for (let i = 0; i < bestSellerProducts.length; i+=4){
-        productSlides.push(bestSellerProducts.slice(i, i+4));
+    const productSlides = [];
+    for (let i = 0; i < bestSellerProducts.length; i += 4) {
+        productSlides.push(bestSellerProducts.slice(i, i + 4));
     }
 
     return (
-
         <>
             <div className="best-sellers1">Best Sellers</div>
             {isLoading ? (<div>Loading best sellers...</div>) : <div>{error}</div>}

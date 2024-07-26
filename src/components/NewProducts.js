@@ -1,12 +1,11 @@
+import React, { useState, useEffect } from 'react';
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import ProductCard from "./ProductCard";
 import "../design/NewProducts.css";
-import React, {useEffect, useState} from "react";
-import {Carousel} from "react-responsive-carousel";
 import axios from "axios";
 
-
-
-const NewProducts = ({ className = "", addToCart  }) => {
+const NewProducts = ({ className = "", addToCart }) => {
     const [newProducts, setNewProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -25,17 +24,15 @@ const NewProducts = ({ className = "", addToCart  }) => {
             }
         }
         fetchNewProducts();
-
     }, [])
 
     const productSlides = [];
-    for (let i = 0; i < newProducts.length; i+=4){
-        productSlides.push(newProducts.slice(i, i+4));
+    for (let i = 0; i < newProducts.length; i += 4) {
+        productSlides.push(newProducts.slice(i, i + 4));
     }
 
-    if (isLoading) return <div>Loading best sellers...</div>;
+    if (isLoading) return <div>Loading new products...</div>;
     if (error) return <div>{error}</div>;
-
 
     return (
         <>
@@ -66,7 +63,6 @@ const NewProducts = ({ className = "", addToCart  }) => {
                 <div>No new products available at the moment.</div>
             )}
         </>
-
     );
 };
 

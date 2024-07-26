@@ -22,7 +22,7 @@ const ProductCard = ({ className = "",addToCart, product = {} }) => {
         const productToAdd = {
             _id: product._id,
             name: product.name,
-            pricePerKg: product.pricePerKg,
+            pricePerKg: product.pricePerKg.toFixed(20),
             image: product.image,
             quantity: parseFloat(quantity.toFixed(1))
         };

@@ -77,11 +77,7 @@ const Cart = () => {
 
             if (response.data.success) {
                 toast.success(
-                    `Order submitted successfully!\n
-                    Order ID: ${response.data.orderId}\n
-                    Full Name: ${values.fullName}
-                    Email: ${values.email}\n
-                    Total: ₪${totalPrice}`,
+                    `Order submitted successfully!`,
                     { autoClose: 10000 }
                 );
 

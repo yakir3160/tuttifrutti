@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import ProductCard from "./ProductCard";
 import "../design/AllProducts.css";
 
-const AllProducts = ({ className = "" , addToCart }) => {
+const AllProducts = ({ className = "", addToCart }) => {
     const [products, setProducts] = useState([]);
     const [sortBy, setSortBy] = useState('');
     const [isLoading, setIsLoading] = useState(true);
@@ -46,7 +46,6 @@ const AllProducts = ({ className = "" , addToCart }) => {
     };
 
     return (
-
         <>
             <div className="hero-cta1">
                 <b className="all-products1">All products</b>
@@ -62,7 +61,7 @@ const AllProducts = ({ className = "" , addToCart }) => {
                 <ul className="dropdown-menu">
                     <li><a className="dropdown-item" onClick={() => sortProducts('priceHighToLow')}>Price high
                         to low</a></li>
-                    <li><a className="dropdown-item"  onClick={() => sortProducts('priceLowToHigh')}>Price low
+                    <li><a className="dropdown-item" onClick={() => sortProducts('priceLowToHigh')}>Price low
                         to high</a></li>
                     <li><a className="dropdown-item" onClick={() => sortProducts('nameAZ')}>A-Z</a></li>
                 </ul>
@@ -79,7 +78,6 @@ const AllProducts = ({ className = "" , addToCart }) => {
                         ))}
                     </>
                 }
-
             </div>
         </>
     );

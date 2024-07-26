@@ -1,4 +1,4 @@
-import React, { useState , useCallback } from 'react';
+import React from 'react';
 import BestSellers from "../components/BestSellers";
 import NewProducts from "../components/NewProducts";
 import AllProducts from "../components/AllProducts";
