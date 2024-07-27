@@ -14,6 +14,7 @@ const Cart = () => {
     const { cartItems, setCartItems } = useOutletContext();
 
     const handleIncrease = (id) => {
+        console.log(`Increasing quantity for item with id: ${id}`);
         setCartItems((prevItems) =>
             prevItems.map((item) =>
                 item.id === id ? { ...item, quantity: item.quantity + 0.5 } : item
@@ -22,6 +23,7 @@ const Cart = () => {
     };
 
     const handleDecrease = (id) => {
+        console.log(`Decreasing quantity for item with id: ${id}`);
         setCartItems((prevItems) =>
             prevItems.map((item) =>
                 item.id === id && item.quantity > 0.5
@@ -32,6 +34,7 @@ const Cart = () => {
     };
 
     const handleRemove = (id) => {
+        console.log(`Removing item with id: ${id}`);
         setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
     };
 
@@ -116,7 +119,7 @@ const Cart = () => {
                             <p style={{ fontSize: 24, fontWeight: 500, fontFamily: "jost" }}>Your products:</p>
                             {cartItems.map((item) => (
                                 <CartItem
-                                    key={item.id} // Ensure each item has a unique key
+                                    key={item.id}
                                     item={item}
                                     onIncrease={handleIncrease}
                                     onDecrease={handleDecrease}

@@ -1,5 +1,6 @@
 import './App.css';
 import React, { useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from './Layout';
 import LandingPage from './pages/LandingPage';
@@ -21,6 +22,7 @@ const App = () => {
                     </Route>
                 </Routes>
             </BrowserRouter>
+            <ToastContainer />
         </div>
     );
 };
