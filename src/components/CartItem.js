@@ -1,11 +1,33 @@
 import React from 'react';
 import "../design/CartItem.css";
 
-const CartItem = ({ item, onIncrease, onDecrease, onRemove }) => {
+const CartItem = ({ item, setCartItems }) => {
     const { id, name, quantity, pricePerKg, image } = item;
 
     const price = Number(pricePerKg) || 0;
     const itemTotalPrice = quantity * price;
+
+    const handleIncrease = () => {
+        setCartItems((prevItems) =>
+            prevItems.map((prevItem) =>
+                prevItem.id === id ? { ...prevItem, quantity: prevItem.quantity + 0.5 } : prevItem
+            )
+        );
+    };
+
+    const handleDecrease = () => {
+        setCartItems((prevItems) =>
+            prevItems.map((prevItem) =>
+                prevItem.id === id && prevItem.quantity > 0.5
+                    ? { ...prevItem, quantity: prevItem.quantity - 0.5 }
+                    : prevItem
+            )
+        );
+    };
+
+    const handleRemove = () => {
+        setCartItems((prevItems) => prevItems.filter((prevItem) => prevItem.id !== id));
+    };
 
     return (
         <div className="cart-item">
@@ -20,14 +42,11 @@ const CartItem = ({ item, onIncrease, onDecrease, onRemove }) => {
                 </div>
             </div>
             <div className="quantity-control">
-                <button onClick={() => onDecrease(id)} className="btn btn-secondary">-</button>
+                <button onClick={handleDecrease} className="btn btn-secondary">-</button>
                 <div className="quantity-label">{quantity.toFixed(2)} kg</div>
-                <button onClick={() => onIncrease(id)} className="btn btn-secondary">+</button>
+                <button onClick={handleIncrease} className="btn btn-secondary">+</button>
             </div>
-            <button
-                onClick={() => onRemove(id)}
-                className="button"
-            >
+            <button onClick={handleRemove} className="button">
                 Remove
             </button>
         </div>

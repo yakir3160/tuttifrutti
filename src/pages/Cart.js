@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CartItem from '../components/CartItem';
 import { Link } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
@@ -12,31 +12,6 @@ import axios from "axios";
 
 const Cart = () => {
     const { cartItems, setCartItems } = useOutletContext();
-
-    const handleIncrease = (id) => {
-        console.log(`Increasing quantity for item with id: ${id}`);
-        setCartItems((prevItems) =>
-            prevItems.map((item) =>
-                item.id === id ? { ...item, quantity: item.quantity + 0.5 } : item
-            )
-        );
-    };
-
-    const handleDecrease = (id) => {
-        console.log(`Decreasing quantity for item with id: ${id}`);
-        setCartItems((prevItems) =>
-            prevItems.map((item) =>
-                item.id === id && item.quantity > 0.5
-                    ? { ...item, quantity: item.quantity - 0.5 }
-                    : item
-            )
-        );
-    };
-
-    const handleRemove = (id) => {
-        console.log(`Removing item with id: ${id}`);
-        setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
-    };
 
     const totalPrice = cartItems.reduce(
         (total, item) => total + item.quantity * item.pricePerKg,
@@ -121,9 +96,7 @@ const Cart = () => {
                                 <CartItem
                                     key={item.id}
                                     item={item}
-                                    onIncrease={handleIncrease}
-                                    onDecrease={handleDecrease}
-                                    onRemove={handleRemove}
+                                    setCartItems={setCartItems}
                                 />
                             ))}
                             <div className="cart-total">
