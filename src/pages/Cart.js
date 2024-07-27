@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect}from 'react';
 import CartItem from '../components/CartItem';
 import { Link } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
@@ -17,6 +17,19 @@ const Cart = () => {
         (total, item) => total + item.quantity * item.pricePerKg,
         0
     ).toFixed(2);
+
+    const updateItemQuantity = (_id, change) => {
+        console.log(`Updating item ${_id} by ${change}`);
+        setCartItems(prevItems => {
+            const newItems = prevItems.map(item =>
+                item._id === _id
+                    ? { ...item, quantity: Math.max(0.5, item.quantity + change) }
+                    : item
+            );
+            console.log('New cart items:', newItems);
+            return [...newItems];
+        });
+    };
 
     const validationSchema = Yup.object({
         fullName: Yup.string().required('Full Name is required'),
@@ -77,6 +90,10 @@ const Cart = () => {
         }
     };
 
+    useEffect(() => {
+        console.log('Cart items updated:', cartItems);
+    }, [cartItems]);
+
     return (
         <div className="cart-container">
             <b className="title">Shopping Cart</b>
@@ -94,8 +111,9 @@ const Cart = () => {
                             <p style={{ fontSize: 24, fontWeight: 500, fontFamily: "jost" }}>Your products:</p>
                             {cartItems.map((item) => (
                                 <CartItem
-                                    key={item.id}
+                                    key={item._id}
                                     item={item}
+                                    updateItemQuantity={updateItemQuantity}
                                     setCartItems={setCartItems}
                                 />
                             ))}

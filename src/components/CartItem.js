@@ -1,32 +1,43 @@
 import React from 'react';
 import "../design/CartItem.css";
 
-const CartItem = ({ item, setCartItems }) => {
-    const { id, name, quantity, pricePerKg, image } = item;
+const CartItem = ({ item, setCartItems, updateItemQuantity }) => {
+    console.log('CartItem rendering:', item);
+
+    const { _id, name, quantity, pricePerKg, image } = item;
 
     const price = Number(pricePerKg) || 0;
     const itemTotalPrice = quantity * price;
 
+    // const handleIncrease = () => {
+    //     setCartItems((prevItems) =>
+    //         prevItems.map((prevItem) =>
+    //             prevItem.id === id ? { ...prevItem, quantity: prevItem.quantity + 0.5 } : prevItem
+    //         )
+    //     );
+    // };
+    //
+    // const handleDecrease = () => {
+    //     setCartItems((prevItems) =>
+    //         prevItems.map((prevItem) =>
+    //             prevItem.id === id && prevItem.quantity > 0.5
+    //                 ? { ...prevItem, quantity: prevItem.quantity - 0.5 }
+    //                 : prevItem
+    //         )
+    //     );
+    // };
     const handleIncrease = () => {
-        setCartItems((prevItems) =>
-            prevItems.map((prevItem) =>
-                prevItem.id === id ? { ...prevItem, quantity: prevItem.quantity + 0.5 } : prevItem
-            )
-        );
+        console.log(`Increasing item ${_id}`);
+        updateItemQuantity(_id, 0.5);
     };
 
     const handleDecrease = () => {
-        setCartItems((prevItems) =>
-            prevItems.map((prevItem) =>
-                prevItem.id === id && prevItem.quantity > 0.5
-                    ? { ...prevItem, quantity: prevItem.quantity - 0.5 }
-                    : prevItem
-            )
-        );
+        console.log(`Decreasing item ${_id}`);
+        updateItemQuantity(_id, -0.5);
     };
 
     const handleRemove = () => {
-        setCartItems((prevItems) => prevItems.filter((prevItem) => prevItem.id !== id));
+        setCartItems((prevItems) => prevItems.filter((prevItem) => prevItem._id !== _id));
     };
 
     return (
