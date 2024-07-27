@@ -5,7 +5,7 @@ import ProductCard from "./ProductCard";
 import "../design/BestSellers.css";
 import axios from "axios";
 
-const BestSellers = ({ className = "", addToCart }) => {
+const BestSellers = ({ className = "", addToCart,triggerCartAnimation}) => {
     const [bestSellerProducts, setBestSellerProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -52,6 +52,7 @@ const BestSellers = ({ className = "", addToCart }) => {
                                     key={product._id}
                                     product={product}
                                     addToCart={addToCart}
+                                    triggerCartAnimation={triggerCartAnimation}
                                 />
                             ))}
                         </div>

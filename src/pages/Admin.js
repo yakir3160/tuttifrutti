@@ -218,13 +218,6 @@ const Admin = () => {
                     <button
                         className={"button"}
                         onClick={() => setSortAZ(!sortAZ)}
-                        style={{
-                            color: "#ffffff",
-                            alignItems: 'center',
-                            width: "80px",
-                            maxWidth: "fit-content",
-                            justifyContent: "center"
-                        }}
                     >
                         Sort {sortAZ ? "Z-A" : "A-Z"}
                     </button>

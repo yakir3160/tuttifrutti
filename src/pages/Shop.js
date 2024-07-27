@@ -6,14 +6,14 @@ import "../design/Shop.css";
 import { useOutletContext } from 'react-router-dom';
 
 const Shop = () => {
-    const { addToCart } = useOutletContext();
+    const { addToCart, triggerCartAnimation } = useOutletContext();
 
     return (
         <div className="shop">
             <b className="title">Shop</b>
-            <BestSellers addToCart={addToCart}/>
-            <NewProducts addToCart={addToCart}/>
-            <AllProducts addToCart={addToCart}/>
+            <BestSellers addToCart={addToCart} triggerCartAnimation={triggerCartAnimation} />
+            <NewProducts addToCart={addToCart} triggerCartAnimation={triggerCartAnimation} />
+            <AllProducts addToCart={addToCart} triggerCartAnimation={triggerCartAnimation} />
         </div>
     );
 };

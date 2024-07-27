@@ -10,7 +10,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    max-width: 100%;
+
     background: #fff8f8;
     border-radius: 25px;
     text-align: center;
@@ -18,7 +18,8 @@
     margin: 20px 0 20px 0;
     color: #000;
     font-family: Jost, serif;
-    min-height: 500px;
+    min-height:fit-content;
+    max-width: 100%;
     height: fit-content;
     padding: 20px;
 }

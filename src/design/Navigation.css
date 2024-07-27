@@ -51,6 +51,23 @@
     color: #000;
     font-family: "Jolly Lodger";
 }
+@keyframes cart-bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.cart-button {
+    transition: transform 0.2s ease-in-out;
+}
+
+.cart-button.animate {
+    animation: cart-bounce 0.5s ease-in-out;
+}
+
 @media screen and (max-width: 750px) {
     .navigation {
         padding-left: 40px;
