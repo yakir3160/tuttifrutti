@@ -12,17 +12,44 @@ const Admin = () => {
     const [error, setError] = useState('');
 
     useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const response = await axios.get('http://localhost:3002/api/products');
-                setProducts(response.data);
-            } catch (error) {
-                console.error('Error fetching products:', error);
-                toast.error('Failed to fetch products');
-            }
-        };
         fetchProducts();
     }, []);
+
+    const fetchProducts = async () => {
+        try {
+            const response = await axios.get('http://localhost:3002/api/products');
+            setProducts(response.data);
+        } catch (error) {
+            console.error('Error fetching products:', error);
+            toast.error('Failed to fetch products');
+        }
+    };
+
+    const updateProductPrice = async (id, newPrice) => {
+        try {
+            const response = await axios.put(`http://localhost:3002/api/products/${id}`, { pricePerKg: newPrice });
+            setProducts(prevProducts =>
+                prevProducts.map(product =>
+                    product._id === id ? { ...product, pricePerKg: newPrice } : product
+                )
+            );
+            toast.success('Product price updated successfully');
+        } catch (error) {
+            console.error('Error updating product price:', error);
+            toast.error('Failed to update product price');
+        }
+    };
+
+    const deleteProduct = async (id) => {
+        try {
+            await axios.delete(`http://localhost:3002/api/products/${id}`);
+            setProducts(prevProducts => prevProducts.filter(product => product._id !== id));
+            toast.success('Product deleted successfully');
+        } catch (error) {
+            console.error('Error deleting product:', error);
+            toast.error('Failed to delete product');
+        }
+    };
 
     return (
         <div className="admin-container">
@@ -30,7 +57,11 @@ const Admin = () => {
                 <AddProduct setProducts={setProducts} setError={setError} />
                 <Orders setOrders={setOrders} setError={setError} />
             </div>
-            <Products products={products} setProducts={setProducts} setError={setError} />
+            <Products
+                products={products}
+                updateProductPrice={updateProductPrice}
+                deleteProduct={deleteProduct}
+            />
         </div>
     );
 };
